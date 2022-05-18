@@ -27,21 +27,16 @@ jobs:
       - uses: actions/setup-node@v3
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Run Build
         run: |
           npm install
           npm run build
-      - shell: bash
-        env:
-          SUPER_SECRET: ${{ secrets.AWS_S3_BUCKET }}
-        run: |
-          echo "$SUPER_SECRET"
       - name: S3 Sync
         uses: jakejarvis/s3-sync-action@v0.5.1
         with:
           args: --acl public-read --delete
         env:
-          AWS_S3_BUCKET: 'test-vue-admin'
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           SOURCE_DIR: 'dist'
