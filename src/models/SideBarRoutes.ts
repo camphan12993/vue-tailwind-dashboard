@@ -2,39 +2,19 @@ import Route from './Route';
 
 const sideBarRoutes: Route[] = [
   {
-    path: '/app/dashboard', // the url
-    icon: 'home', // the component being exported from icons/index.js
+    path: '/dashboard', // the url
+    icon: 'dashboard', // the component being exported from icons/index.js
     name: 'Dashboard', // name that appear in Sidebar
   },
   {
-    path: '/app/forms',
-    icon: 'forms',
-    name: 'Forms',
+    path: '/user', // the url
+    icon: 'user', // the component being exported from icons/index.js
+    name: 'User', // name that appear in Sidebar
   },
   {
-    path: '/app/cards',
-    icon: 'cards',
-    name: 'Cards',
-  },
-  {
-    path: '/app/charts',
-    icon: 'charts',
-    name: 'Charts',
-  },
-  {
-    path: '/app/buttons',
-    icon: 'buttons',
-    name: 'Buttons',
-  },
-  {
-    path: '/app/modals',
-    icon: 'modals',
-    name: 'Modals',
-  },
-  {
-    path: '/app/tables',
-    icon: 'tables',
-    name: 'Tables',
+    path: '/contact', // the url
+    icon: 'contact', // the component being exported from icons/index.js
+    name: 'Contact', // name that appear in Sidebar
   },
 ];
 
