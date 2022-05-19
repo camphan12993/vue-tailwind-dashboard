@@ -37,10 +37,19 @@
         </label>
 
         <!-- You should use a button here, as the anchor is only used for the example  -->
-        <a class="block cursor-pointer w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-          @click="submitForm">
+        <button
+          class="flex items-center justify-center w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+          :disabled="isLoading" @click="submitForm">
+          <i v-if="isLoading" class='bx bx-loader-alt bx-spin mr-2'></i>
+
           Create account
-        </a>
+        </button>
+
+        <div v-if="error"
+          class="mt-4 px-4 py-3 mb-4 text-sm text-red-700 bg-red-100 rounded-sm dark:bg-red-200 dark:text-red-800"
+          role="alert">
+          {{ error }}
+        </div>
 
         <hr class="my-8" />
 
@@ -72,7 +81,7 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, reactive } from 'vue';
+import { computed, defineComponent, reactive, ref } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required, email, minLength, sameAs } from "@vuelidate/validators";
 import { useStore } from 'vuex';
@@ -104,7 +113,7 @@ export default defineComponent({
         store.dispatch(actionTypes.REGISTER, { email: state.email, password: state.password.password })
       }
     }
-    return { state, v$, submitForm }
+    return { state, v$, submitForm, error: computed(() => store.state.err), isLoading: computed(() => store.state.status.isLoading) }
   },
 
 });

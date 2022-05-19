@@ -7,4 +7,8 @@ function login(email: string, password: string) {
   return Auth.signIn(email, password);
 }
 
-export { register, login };
+function logout() {
+  return Auth.signOut();
+}
+
+export { register, login, logout };
