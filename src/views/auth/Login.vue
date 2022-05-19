@@ -11,14 +11,14 @@
         <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">Login</h1>
         <label class="block text-sm">
           <span class="text-gray-700 dark:text-gray-400">Email</span>
-          <input :class="{ 'border-red-600': v$.email.$errors.length }"
+          <input v-model="state.email" :class="{ 'border-red-600': v$.email.$errors.length }"
             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
             placeholder="Jane Doe" />
           <p v-if="v$.email.$errors.length" class="text-red-600 mt-1 text-xs">{{ v$.email.$errors[0].$message }}</p>
         </label>
         <label class="block mt-4 text-sm">
           <span class="text-gray-700 dark:text-gray-400">Password</span>
-          <input :class="{ 'border-red-600': v$.password.$errors.length }"
+          <input v-model="state.password" :class="{ 'border-red-600': v$.password.$errors.length }"
             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
             placeholder="***************" type="password" />
           <p v-if="v$.password.$errors.length" class="text-red-600 mt-1 text-xs">{{ v$.password.$errors[0].$message }}
@@ -72,10 +72,13 @@
 import { computed, defineComponent, reactive } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required, email, minLength } from "@vuelidate/validators";
+import { actionTypes } from '@/store';
+import { useStore } from 'vuex';
 
 export default defineComponent({
   name: 'Login',
   setup() {
+    const store = useStore();
     const state = reactive({
       email: '',
       password: ''
@@ -85,15 +88,13 @@ export default defineComponent({
       password: { required, minLength: minLength(6) }
     }))
     const v$ = useVuelidate(rules, state);
-    return { state, v$ }
-  },
-  methods: {
-    submitForm() {
-      this.v$.$validate()
-      if (!this.v$.$error) {
-        alert('Form successfully submitted.')
+    const submitForm = () => {
+      v$.value.$validate()
+      if (!v$.value.$error) {
+        store.dispatch(actionTypes.LOIGN, { email: state.email, password: state.password })
       }
     }
-  }
+    return { state, v$, submitForm }
+  },
 });
 </script>

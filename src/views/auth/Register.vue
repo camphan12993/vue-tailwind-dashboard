@@ -75,10 +75,13 @@
 import { computed, defineComponent, reactive } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required, email, minLength, sameAs } from "@vuelidate/validators";
+import { useStore } from 'vuex';
+import { actionTypes } from '@/store';
 
 export default defineComponent({
   name: 'Register',
   setup() {
+    const store = useStore();
     const state = reactive({
       email: '',
       password: {
@@ -94,15 +97,15 @@ export default defineComponent({
       }
     }))
     const v$ = useVuelidate(rules, state);
-    return { state, v$ }
-  },
-  methods: {
-    submitForm() {
-      this.v$.$validate()
-      if (!this.v$.$error) {
-        alert('Form successfully submitted.')
+
+    const submitForm = () => {
+      v$.value.$validate()
+      if (!v$.value.$error) {
+        store.dispatch(actionTypes.REGISTER, { email: state.email, password: state.password.password })
       }
     }
-  }
+    return { state, v$, submitForm }
+  },
+
 });
 </script>

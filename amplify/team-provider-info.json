@@ -10,6 +10,11 @@
       "StackName": "amplify-vuetailwinddashboard-dev-141142",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:277013795782:stack/amplify-vuetailwinddashboard-dev-141142/eff88de0-d742-11ec-9086-0a9c4c107bf8",
       "AmplifyAppId": "d3ekqafjois8mt"
+    },
+    "categories": {
+      "auth": {
+        "vuetailwinddashboardf14c47fb": {}
+      }
     }
   }
 }
