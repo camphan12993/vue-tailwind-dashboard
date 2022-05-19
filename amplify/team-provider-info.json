@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vuetailwinddashboard-dev-141142-authRole",
+      "UnauthRoleArn": "arn:aws:iam::277013795782:role/amplify-vuetailwinddashboard-dev-141142-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::277013795782:role/amplify-vuetailwinddashboard-dev-141142-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-vuetailwinddashboard-dev-141142-deployment",
+      "UnauthRoleName": "amplify-vuetailwinddashboard-dev-141142-unauthRole",
+      "StackName": "amplify-vuetailwinddashboard-dev-141142",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:277013795782:stack/amplify-vuetailwinddashboard-dev-141142/eff88de0-d742-11ec-9086-0a9c4c107bf8",
+      "AmplifyAppId": "d3ekqafjois8mt"
+    }
+  }
+}

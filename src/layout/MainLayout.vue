@@ -3,15 +3,17 @@
     <SideBar />
     <div class="flex flex-col flex-1 w-full">
       <NavBar />
-      <main class="h-full overflow-y-auto"></main>
+      <main class="h-full overflow-y-auto">
+        <router-view></router-view>
+      </main>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import NavBar from './NavBar.vue';
-import SideBar from './SideBar.vue';
+import NavBar from '../components/NavBar.vue';
+import SideBar from '../components/SideBar.vue';
 
 export default defineComponent({
   name: 'MainLayout',
